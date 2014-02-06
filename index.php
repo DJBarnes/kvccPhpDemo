@@ -41,6 +41,8 @@
             <input type="radio" name="sex" value="yes">Yes Please!</input>
             <input type="radio" name="sex" value="no">Not so much!</input>
           </td>
+        </tr>
+        <tr>
           <td>
               <label>Are you crazy?</label>
           </td>
