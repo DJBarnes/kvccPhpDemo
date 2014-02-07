@@ -56,6 +56,7 @@ $Person = findPerson();
   <h2>Edit A Record</h2>
   <fieldset class = "add_record">
     <form name="demo" action="updateRecord.php" method="post">
+      <input type="hidden" name="id" value="<?php echo $Person->id;?>">
       <table>
         <tr>
           <td>
@@ -108,7 +109,7 @@ $Person = findPerson();
             if ($Person->crazy == 0) {
               echo '<input type="checkbox" name="crazy" value="1">';
             } else {
-              echo '<input type="checkbox" name="crazy" value="1" checked="checked">';             
+              echo '<input type="checkbox" name="crazy" value="1" checked>';             
             }
             ?>
           </td>
