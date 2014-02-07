@@ -1,3 +1,34 @@
+<?php
+
+  function getConnection() {
+    $dbhost = "barnesbrothers.homeserver.com";
+    $dbuser = "p2p";
+    $dbpass = "phase6";
+    $dbname = "kvccDemo";
+    $dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    return $dbh;
+  }
+
+  function getCounties() {
+    $sql = "SELECT * FROM County";
+    try {
+      $db = getConnection();
+      $stmt = $db -> query($sql);
+      $People = $stmt -> fetchAll(PDO::FETCH_OBJ);
+      $db = null;
+      foreach ($People as $Person) {
+        $result = $result . "<option value=". $Person->id .">";
+        $result = $result . $Person->name;
+        $result = $result . "</option>";
+      }
+      return $result;
+    } catch(PDOException $e) {
+      echo '{"error":{"text":' . $e -> getMessage() . '}}';
+    }
+  }
+
+?>
 <html>
 <head>
 </head>
@@ -29,8 +60,9 @@
           </td>
           <td>
             <select name="countyId">
-              <option value="1">Kalamazoo<option>
-              <option value="2">Kent<option>
+              <?php
+              echo getCounties();
+              ?>
             </select>
           </td>
         </tr>
