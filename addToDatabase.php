@@ -7,7 +7,11 @@ function createPersonObject() {
   $Person->last = $_POST['last'];
   $Person->countyId = $_POST['countyId'];
   $Person->sex = $_POST['sex'];
-  $Person->crazy = $_POST['crazy'];
+  if (isset($_POST['crazy'])) {
+    $Person->crazy = $_POST['crazy'];
+  } else {
+    $Person->crazy = 0;
+  }
   return $Person;
 }
 
