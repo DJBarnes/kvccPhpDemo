@@ -1,7 +1,6 @@
 <?php
 $Person = createPersonObject();
 updatePerson($Person);
-echo "<h1>Success! The record has been added</h1>";
 
 function createPersonObject() {
   $Person->id = $_POST['id'];
@@ -30,7 +29,7 @@ function updatePerson($Person) {
     $stmt->bindParam("crazy", $Person->crazy);
     $stmt->execute();
     $db = null;
-    header('Location:index.php');
+    header('Location:index.php?action=update');
   } catch(PDOException $e) {
     echo '{"error":{"text":' . $e -> getMessage() . '}}';
   }

@@ -1,5 +1,17 @@
 <?php
-$Person = findPerson();
+if (isset($_POST['record'])) {
+  if (isset($_POST['edit'])) {
+    $Person = findPerson();
+  } else if (isset($_POST['delete'])) {
+    $Person = findPerson();
+    header('Location:delete.php?id=' . $Person->id);
+  } else {
+    echo "No button was used to submit this form";
+  }
+} else {
+  echo "You did not select a person. Please Click the back button to select a record to edit or delete";
+}
+
   function getConnection() {
     $dbhost = "barnesbrothers.homeserver.com";
     $dbuser = "p2p";

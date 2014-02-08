@@ -1,4 +1,17 @@
 <?php
+if (isset($_GET['action'])) {
+  switch($_GET['action']) {
+    case 'add':
+      echo "<h2>The record was successfully added</h2>";
+      break;
+    case 'update':
+      echo "<h2>The record was successfully updated</h2>";
+      break;
+    case 'delete':
+      echo "<h2>The record was successfully deleted</h2>";
+      break;
+  }
+}
 
   function getConnection() {
     $dbhost = "barnesbrothers.homeserver.com";

@@ -1,9 +1,13 @@
+<html>
+<head>
+</head>
+<body>
 <?php
 createSearchResults();
-//print_r(findPerson());
+
   function createSearchResults() {
     $SearchResults = findPerson();
-    $HTML = '<form  name="searchResults" action="editForm.php" method="post"><table><tr><td>First Name</td><td>Last Name</td><td>County</td><td>Sex</td><td>Crazy</td><td>Select</td></tr>';
+    $HTML = '<form id="searchResults" name="searchResults" action="editForm.php" method="post"><table><tr><td>First Name</td><td>Last Name</td><td>County</td><td>Sex</td><td>Crazy</td><td>Select</td></tr>';
     foreach ($SearchResults as $Person) {
 
       $CountyId = $Person['countyId'];
@@ -27,10 +31,10 @@ createSearchResults();
       $HTML = $HTML . "<td>" . $County . "</td>";
       $HTML = $HTML . "<td>" . $sexResult . "</td>";
       $HTML = $HTML . "<td>" . $crazyResult . "</td>";
-      $HTML = $HTML . '<td><input type=radio name="record" value="' . $Person['id'] . '"></td></tr>';
+      $HTML = $HTML . '<td><input required type=radio name="record" value="' . $Person['id'] . '"></td></tr>';
 
     }
-    $HTML = $HTML . '</table><input type="submit" name="Select">';
+    $HTML = $HTML . '</table><input type="submit" name="edit" value="Edit"><input type="submit" name="delete" value="Delete"></form><form method="get" action="index.php"><button type="submit" name="return" value="Return">Return</button></form>';
     echo $HTML;
   }
 
@@ -77,3 +81,5 @@ function getConnection() {
   return $dbh;
 }
 ?>
+</body>
+</html>

@@ -1,7 +1,6 @@
 <?php
 $Person = createPersonObject();
 addPerson($Person);
-echo "<h1>Success! The record has been added</h1>";
 
 function createPersonObject() {
   $Person->first = $_POST['first'];
@@ -25,6 +24,7 @@ function addPerson($Person) {
     $stmt->execute();
     $Person->id = $db->lastInsertId();
     $db = null;
+    header('Location:index.php?action=add');
   } catch(PDOException $e) {
     echo '{"error":{"text":' . $e -> getMessage() . '}}';
   }
